@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeBar.ConsoleApp.ModuloGarçom
 {
-    internal class RepositorioGarcom : RepositorioBase
+    public  class RepositorioGarcom : RepositorioBase
     {
         public RepositorioGarcom(ArrayList listaGarcom)
         {

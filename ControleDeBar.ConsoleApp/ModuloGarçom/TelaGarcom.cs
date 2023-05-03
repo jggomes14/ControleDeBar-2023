@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ControleDeBar.ConsoleApp.ModuloGarçom
 {
-    internal class TelaGarcom : TelaBase
+    public class TelaGarcom : TelaBase
     {
         private RepositorioGarcom repositorioGarcom;
         private TelaMesa telaMesa;

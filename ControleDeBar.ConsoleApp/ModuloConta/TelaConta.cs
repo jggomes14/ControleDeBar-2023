@@ -17,8 +17,12 @@ namespace ControleDeBar.ConsoleApp.ModuloMesa
         private TelaProduto telaProduto;
         private RepositorioProduto repositorioProduto;
         private TelaGarcom telaGarcom;
-        public TelaConta(RepositorioConta repositorioConta)
+        private TelaMesa telaMesa;
+        private RepositorioMesa repositorioMesa;
+        public TelaConta(RepositorioConta repositorioConta, RepositorioMesa repositorioMesa, TelaMesa telaMesa, RepositorioProduto repositorioProduto, TelaProduto telaProduto, RepositorioGarcom repositorioGarcom, TelaGarcom telaGarcom)
         {
+            this.repositorioMesa = repositorioMesa;
+            this.telaMesa = telaMesa;
             this.repositorioProduto = repositorioProduto;
             this.telaProduto = telaProduto;
             this.repositorioGarcom = repositorioGarcom;
@@ -41,17 +45,17 @@ namespace ControleDeBar.ConsoleApp.ModuloMesa
 
         protected override EntidadeBase ObterRegistro()
         {
-
+            Mesa mesa = ObterMesa();
             Garcom garcom = ObterGarcom();
             Produto produto = ObterProduto();
             string estaAberto = null;
-            return new Conta(produto, garcom, estaAberto) ;
+            return new Conta(produto, garcom, estaAberto, mesa) ;
         }
         private Garcom ObterGarcom()
         {
 
             telaGarcom.VisualizarRegistros(false);
-            Garcom garcom = (Garcom)telaGarcom.EncontrarRegistro("Digite o id da Conta: ");
+            Garcom garcom = (Garcom)telaGarcom.EncontrarRegistro("Digite o id do Garçom: ");
 
 
 
@@ -63,13 +67,20 @@ namespace ControleDeBar.ConsoleApp.ModuloMesa
         {
 
             telaProduto.VisualizarRegistros(false);
-            Produto produto = (Produto)telaProduto.EncontrarRegistro("Digite o id da Conta: ");
+            Produto produto = (Produto)telaProduto.EncontrarRegistro("Digite o id do Produto: ");
 
 
 
             Console.WriteLine();
 
             return produto;
+        }
+        private Mesa ObterMesa()
+        {
+            telaMesa.VisualizarRegistros(false);
+            Mesa mesa = (Mesa)telaMesa.EncontrarRegistro("Digite o id da Mesa: ");
+            Console.WriteLine();
+            return mesa;
         }
     }
 }

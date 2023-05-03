@@ -13,11 +13,11 @@ namespace ControleDeBar.ConsoleApp
             RepositorioProduto repositorioProduto = new RepositorioProduto(new ArrayList());
             TelaProduto telaProduto = new TelaProduto(repositorioProduto);
             RepositorioConta repositorioConta = new RepositorioConta(new ArrayList());
-            TelaConta telaConta = new TelaConta(repositorioConta);
             RepositorioMesa repositorioMesa = new RepositorioMesa(new ArrayList());
-            TelaMesa telaMesa = new TelaMesa(repositorioMesa, telaConta, repositorioConta);
+            TelaMesa telaMesa = new TelaMesa(repositorioMesa);
             RepositorioGarcom repositorioGarcom = new RepositorioGarcom(new ArrayList());
             TelaGarcom telaGarcom = new TelaGarcom(repositorioGarcom, repositorioMesa, telaMesa);
+            TelaConta telaConta = new TelaConta(repositorioConta, repositorioMesa, telaMesa, repositorioProduto, telaProduto, repositorioGarcom, telaGarcom);
             TelaPrincipal principal = new TelaPrincipal();
             while (true)
             {

@@ -1,5 +1,6 @@
 ﻿using ControleDeBar.ConsoleApp.Compartilhado;
 using ControleDeBar.ConsoleApp.ModuloGarçom;
+using ControleDeBar.ConsoleApp.ModuloMesa;
 using ControleDeBar.ConsoleApp.ModuloProdutos;
 using System;
 using System.Collections;
@@ -16,19 +17,22 @@ namespace ControleDeBar.ConsoleApp.ModuloConta
 
         public Garcom garcom;
         public string estaAberto;
+        public Mesa mesa;
 
 
-        public Conta (Produto produto, Garcom garcom, string estaAberto)
+        public Conta (Produto produto, Garcom garcom, string estaAberto, Mesa mesa)
         {
             this.produto = produto;
             this.garcom = garcom;
             this.estaAberto = estaAberto;
+            this.mesa = mesa;
         }
         public override void AtualizarInformacoes(EntidadeBase registroAtualizado)
         {
             Conta contaAtualizada = (Conta)registroAtualizado;
             this.produto = contaAtualizada.produto;
             this.garcom = contaAtualizada.garcom;
+            this.mesa = contaAtualizada.mesa;
 
         }
        
