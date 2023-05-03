@@ -33,13 +33,13 @@ namespace ControleDeBar.ConsoleApp.ModuloMesa
         }
         protected override void MostrarTabela(ArrayList registros)
         {
-            Console.WriteLine("{0, -10} | {1, -20} | {2, -20} | {3, -20} | {4, -20}", "Id", "Nome", "Tipo", "Preço", "Aberta");
+            Console.WriteLine("{0, -10} | {1, -20} | {2, -20} | {3, -20} | {4, -20} | {5, -20}", "Id", "Mesa", "Nome do Garçom", "Tipo", "Preço", "Aberta");
 
             Console.WriteLine("--------------------------------------------------------------------");
 
             foreach (Conta conta in registros)
             {
-                Console.WriteLine("{0, -10} | {1, -20} | {2, -20} | {3, -20} | {4, -20}", conta.id, conta.garcom.nome, conta.produto.nome, conta.produto.preco + "reais", conta.estaAberto);
+                Console.WriteLine("{0, -10} | {1, -20} | {2, -20} | {3, -20} | {4, -20} | {5, -20}", conta.id, conta.mesa.localidade, conta.garcom.nome, conta.produto.nome, conta.produto.preco + "reais", conta.estaAberto);
             }
         }
 
@@ -82,5 +82,43 @@ namespace ControleDeBar.ConsoleApp.ModuloMesa
             Console.WriteLine();
             return mesa;
         }
+        public virtual void InserirMultiplosRegistros()
+        {
+            MostrarCabecalho($"Cadastro de {nomeEntidade}{sufixo}", "Inserindo múltiplos registros...");
+
+            int quantidade = 0;
+            bool entradaValida = false;
+
+            while (!entradaValida)
+            {
+                MostrarMensagem("Quantos registros deseja inserir?", ConsoleColor.Yellow);
+
+                if (int.TryParse(Console.ReadLine(), out quantidade) && quantidade > 0)
+                {
+                    entradaValida = true;
+                }
+                else
+                {
+                    MostrarMensagem("Entrada inválida! Digite um número inteiro maior que zero.", ConsoleColor.Red);
+                }
+            }
+
+            for (int i = 0; i < quantidade; i++)
+            {
+                EntidadeBase registro = ObterRegistro();
+
+                if (TemErrosDeValidacao(registro))
+                {
+                    MostrarMensagem("Registro inválido! Tente novamente.", ConsoleColor.Red);
+                    i--;
+                }
+                else
+                {
+                    repositorioBase.Inserir(registro);
+                    MostrarMensagem("Registro inserido com sucesso!", ConsoleColor.Green);
+                }
+            }
+        }
+
     }
 }

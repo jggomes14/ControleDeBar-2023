@@ -98,7 +98,7 @@ namespace ControleDeBar.ConsoleApp
 
                     if (subMenu == "1")
                     {
-                        telaConta.InserirNovoRegistro();
+                        telaConta.InserirMultiplosRegistros();
                     }
                     else if (subMenu == "2")
                     {

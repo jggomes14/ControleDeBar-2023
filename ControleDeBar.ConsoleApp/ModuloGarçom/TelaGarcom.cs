@@ -30,7 +30,7 @@ namespace ControleDeBar.ConsoleApp.ModuloGarçom
 
             foreach (Garcom garcom in registros)
             {
-                Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", garcom.id, garcom.nome, garcom.mesa);
+                Console.WriteLine("{0, -10} | {1, -20} | {2, -20}", garcom.id, garcom.nome, garcom.mesa.localidade);
             }
         }
 
